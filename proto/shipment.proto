@@ -1,0 +1,14 @@
+syntax = "proto3";
+package ecommerce;
+
+service ShipmentService {
+  rpc GetShipment (GetShipmentRequest) returns (Shipment);
+  // Khách tìm vận đơn theo mã đơn hàng (vì response đặt hàng không chứa shipment, nó được tạo bất đồng bộ)
+  rpc GetShipmentByOrder (GetShipmentByOrderRequest) returns (Shipment);
+  rpc UpdateShipmentStatus (UpdateStatusRequest) returns (Shipment);
+}
+
+message GetShipmentRequest { int32 shipid = 1; }
+message GetShipmentByOrderRequest { int32 oid = 1; }
+message UpdateStatusRequest { int32 shipid = 1; string status = 2; }
+message Shipment { int32 shipid = 1; int32 oid = 2; string status = 3; }

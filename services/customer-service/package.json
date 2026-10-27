@@ -1,0 +1,14 @@
+{
+  "name": "customer-service",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --env-file=../../.env src/server.js",
+    "test:grpc": "node --env-file=../../.env scripts/test-customer.js"
+  },
+  "dependencies": {
+    "@ecommerce/common": "*",
+    "pg": "^8.11.0"
+  }
+}

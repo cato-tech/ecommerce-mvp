@@ -1,0 +1,14 @@
+{
+  "name": "shipment-service",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --env-file=../../.env src/server.js",
+    "test:grpc": "node --env-file=../../.env scripts/test-shipment.js"
+  },
+  "dependencies": {
+    "@ecommerce/common": "*",
+    "mongodb": "^6.8.0"
+  }
+}

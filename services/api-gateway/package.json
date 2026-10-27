@@ -1,0 +1,17 @@
+{
+  "name": "api-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --env-file=../../.env src/server.js",
+    "test:api": "node --env-file=../../.env scripts/test-gateway.js",
+    "test:e2e": "node --env-file=../../.env scripts/test-e2e.js"
+  },
+  "dependencies": {
+    "@ecommerce/common": "*",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "ioredis": "^5.4.1"
+  }
+}

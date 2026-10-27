@@ -1,0 +1,5 @@
+{
+  "name": "ecommerce-mvp",
+  "private": true,
+  "workspaces": ["libs/*", "services/*"]
+}

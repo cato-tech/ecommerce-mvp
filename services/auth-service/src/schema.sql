@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS roles (
+  roleid   SERIAL PRIMARY KEY,
+  rolename VARCHAR(50) UNIQUE NOT NULL
+);
+
+INSERT INTO roles (rolename) VALUES ('CUSTOMER'), ('ADMIN'), ('SHIPMENT_STAFF')
+ON CONFLICT (rolename) DO NOTHING;
+
+CREATE TABLE IF NOT EXISTS users (
+  uid        SERIAL PRIMARY KEY,
+  username   VARCHAR(50)  UNIQUE NOT NULL,
+  password   VARCHAR(255) NOT NULL,
+  email      VARCHAR(100) UNIQUE NOT NULL,
+  phone      VARCHAR(20),
+  roleid     INT NOT NULL REFERENCES roles (roleid),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);

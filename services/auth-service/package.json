@@ -1,0 +1,16 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --env-file=../../.env src/server.js",
+    "test:grpc": "node --env-file=../../.env scripts/test-auth.js"
+  },
+  "dependencies": {
+    "@ecommerce/common": "*",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.0"
+  }
+}

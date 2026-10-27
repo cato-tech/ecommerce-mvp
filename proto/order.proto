@@ -1,0 +1,15 @@
+syntax = "proto3";
+package ecommerce;
+
+service OrderService {
+  rpc CreateOrder (CreateOrderRequest) returns (Order);
+  rpc ListOrders (ListOrdersRequest) returns (ListOrdersReply);
+  rpc GetOrder (GetOrderRequest) returns (Order);
+}
+
+message OrderItem { int32 pid = 1; int32 qty = 2; double unit_price = 3; }
+message CreateOrderRequest { int32 uid = 1; repeated OrderItem items = 2; }
+message ListOrdersRequest { int32 uid = 1; string role = 2; }
+message GetOrderRequest { int32 oid = 1; int32 uid = 2; string role = 3; }
+message Order { int32 oid = 1; int32 uid = 2; double discount = 3; double total_amount = 4; repeated OrderItem items = 5; }
+message ListOrdersReply { repeated Order items = 1; }

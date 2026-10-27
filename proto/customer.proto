@@ -1,0 +1,14 @@
+syntax = "proto3";
+package ecommerce;
+
+service CustomerService {
+  rpc GetCustomer (GetCustomerRequest) returns (Customer);
+  rpc UpdateCustomer (UpdateCustomerRequest) returns (Customer);
+  rpc GetMembership (GetCustomerRequest) returns (Membership);
+}
+
+message GetCustomerRequest { int32 uid = 1; }
+// caller_uid / caller_role lấy từ JWT do API Gateway điền, dùng để kiểm tra quyền
+message UpdateCustomerRequest { int32 uid = 1; string fullname = 2; int32 mid = 3; int32 caller_uid = 4; string caller_role = 5; }
+message Customer { int32 uid = 1; string fullname = 2; int32 mid = 3; }
+message Membership { int32 mid = 1; string mname = 2; int32 score = 3; }

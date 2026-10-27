@@ -1,0 +1,25 @@
+syntax = "proto3";
+package ecommerce;
+
+service ProductService {
+  rpc ListProducts (ListProductsRequest) returns (ListProductsReply);
+  rpc GetProduct (GetProductRequest) returns (Product);
+  rpc CreateProduct (ProductInput) returns (Product);
+  rpc UpdateProduct (UpdateProductRequest) returns (Product);
+  rpc DeleteProduct (GetProductRequest) returns (DeleteReply);
+  // Dành cho Order Service: kiểm tra và trừ kho trong MỘT thao tác nguyên tử
+  rpc ReserveStock (StockRequest) returns (StockReply);
+  // Bù trừ: hoàn kho khi tạo Order thất bại
+  rpc ReleaseStock (StockRequest) returns (StockReply);
+}
+
+message Product { int32 pid = 1; string pname = 2; double price = 3; int32 quantity = 4; }
+message ProductInput { string pname = 1; double price = 2; int32 quantity = 3; }
+message ListProductsRequest {}
+message ListProductsReply { repeated Product items = 1; }
+message GetProductRequest { int32 pid = 1; }
+message UpdateProductRequest { int32 pid = 1; ProductInput data = 2; }
+message DeleteReply { int32 pid = 1; }
+message StockItem { int32 pid = 1; int32 qty = 2; }
+message StockRequest { repeated StockItem items = 1; }
+message StockReply { repeated Product items = 1; } // trả giá để Order lưu unit_price
